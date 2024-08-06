@@ -5,10 +5,10 @@ include /etc/sway/config.d/*
 set $lock swaylock -f -c 000000
 set $term alacritty
 set $launcher bemenu-run -p "" | xargs swaymsg exec --
-set $browser firefox
-set $codeEditor $term -e vim
+set $browser firedragon
+set $codeEditor mousepad
 set $fileExplorer nautilus
-set $musicPlayer $term -e cmus
+set $musicPlayer $term -e musikcube
 set $taskManager $term -e htop
 set $networkManager $term -e iwctl
 set $screenshot grim $HOME/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S.png')
@@ -24,15 +24,24 @@ set $increaseAudioInput wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+
 set $decreaseAudioInput wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%-
 
 # Input Configuration
-input * {
-  xkb_layout br
+input type:keyboard {
+    xkb_layout br
+    xkb_numlock enabled
 }
 
-input "1267:1024:ELAN1200:00_04F3:0400" {
-    dwt enabled
+input type:pointer {
+    accel_profile flat
+    pointer_accel 0.2 
+}
+
+input type:touchpad {
     tap enabled
     natural_scroll enabled
+    dwt enabled
     middle_emulation enabled
+    scroll_method two_finger
+    scroll_factor 1.0
+    pointer_accel 0.5
 }
 
 # Output Configuration
@@ -214,6 +223,7 @@ exec gammastep
 
 # Styling
 ## Run 'man 5 sway' for more information and options.
+for_window [class="^.*"] floating enable
 client.focused 9911AA 661177 FFFFFF EE22FF
 client.focused_inactive 330044 220033 CCCCCC
 client.unfocused 330044 220033 CCCCCC
