@@ -7,7 +7,7 @@ set $term alacritty
 set $launcher bemenu-run -p "" | xargs swaymsg exec --
 set $browser firedragon
 set $codeEditor mousepad
-set $fileExplorer nautilus
+set $fileExplorer thunar
 set $musicPlayer $term -e musikcube
 set $taskManager $term -e htop
 set $networkManager $term -e iwctl
@@ -46,7 +46,7 @@ input type:touchpad {
 
 # Output Configuration
 #output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-output * bg /home/mttyhv/Pictures/Wallpapers/wallhaven-l8y212.jpg fill
+output * bg /home/mttyhv/Pictures/Wallpapers/saturn.png fill
 ## output NAME mode 1600x900@143.996002HZ position 0,0
 ## run 'swaymsg -t get_outputs' in a terminal to get display device names
 ## eg: 'Output [NAME] '...' (focused)'
@@ -190,8 +190,8 @@ set $mod Mod4
   bindsym $mod+r mode "resize"
 
 # Idle Configuration
-exec swayidle -w timeout 180 'swaylock -f -c 000000' # before-sleep 'swaylock -f -c 000000' -- Requires systemd or elogind
-exec swayidle -w timeout 10 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 120 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+exec swayidle -w timeout 300 'swaylock -f -c 000000' # before-sleep 'swaylock -f -c 000000' 
 exec swayidle -w timeout 600 'if pgrep -x swaylock; then s2ram; fi'
 
 # Status Bar
